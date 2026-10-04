@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "engdebug"
+version = "0.1.0"
+description = "Testing, debugging and optimising Python code for engineers: a sensor-data pipeline with deliberately broken labs, a reference implementation, tests at every level, profiling exercises and an incident-response capstone."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Yanwei Wang", email = "wangyanwei@gmail.com" }]
+keywords = ["debugging", "testing", "pytest", "profiling", "optimization", "python", "engineering", "education"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Debuggers",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov", "hypothesis>=6", "ruff>=0.4", "mypy>=1.5", "numpy>=1.24"]
+
+[project.urls]
+Homepage = "https://github.com/ktwyw/engdebug"
+Issues = "https://github.com/ktwyw/engdebug/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+engdebug = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["slow: performance tests that take several seconds"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["labs/*/buggy", "capstone/release"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E731", "E402", "E501", "B905", "B007"]
+
+[tool.ruff.lint.per-file-ignores]
+"labs/*" = ["E501"]
+"solutions/*" = ["E501"]
+"tools/*" = ["E501"]
+"tests/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+packages = ["engdebug"]
+mypy_path = "src"
+ignore_missing_imports = true
+warn_unused_ignores = true

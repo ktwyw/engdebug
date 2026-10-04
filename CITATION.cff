@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use engdebug in your work, please cite it as below."
+title: "engdebug: regression analysis from scratch, in Python"
+type: software
+authors:
+  - family-names: Wang
+    given-names: Yanwei
+    email: wangyanwei@gmail.com
+    orcid: "https://orcid.org/0000-0002-8488-9833"
+    website: "https://github.com/ktwyw"
+version: 0.1.0
+date-released: "2026-10-04"
+license: MIT
+repository-code: "https://github.com/ktwyw/engdebug"
+keywords:
+  - debugging
+  - software testing
+  - pytest
+  - profiling
+  - code optimization
+  - Python
+  - engineering education
+abstract: >-
+  A teaching repository for testing, debugging and optimising Python code in engineering: a reference
+  sensor-data pipeline with tests at every level, twelve labs built on deliberately broken copies of it
+  covering every common error source, profiling and optimisation exercises with measured evidence, a
+  CI workflow with lint and type checks, and an incident-response capstone with a postmortem.

@@ -1,0 +1,28 @@
+# The CI workflow for this lab's module. Copy the three jobs' commands and run them locally until all pass.
+name: lab11-quality
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install ruff
+      - run: ruff check --isolated --select E,F,W,I,B --line-length 120 labs/lab11_ci_quality/buggy/quality.py
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install mypy
+      - run: mypy --strict labs/lab11_ci_quality/buggy/quality.py
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pytest ruff mypy
+      - run: python -m pytest labs/lab11_ci_quality -q
