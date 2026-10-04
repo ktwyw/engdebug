@@ -14,6 +14,8 @@ First public release.
   solution passes.
 - **Capstone**: release candidate 0.2.0-rc1 with a data-handling bug, a logic bug and a 100x performance
   regression; acceptance tests; a worked postmortem.
+- **Engineering correctness**: `engineering.py` (pipe flow, gases, heat exchangers, pumps with units in every
+  name and ranges enforced), a V&V benchmark suite with sourced reference values, lab 14 and chapter 13.
 - **Course chapters** (`docs/course/`, 13 chapters from zero with runnable examples in `examples/`) and a
   catalogue of programming habits (`docs/habits.md`) tied to the chapters and labs.
 - **Docs**: the debugging workflow, an error catalog, a testing guide, a performance playbook, a postmortem

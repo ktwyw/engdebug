@@ -11,6 +11,7 @@
 | smoke / sanity | does it run at all after this change? | `test_clean_day_runs` in the capstone |
 | performance | is it still fast enough on the largest realistic input? | `tests/performance/test_performance.py` |
 | acceptance | may this release ship? | `capstone/tests/` |
+| benchmark (V&V) | does the number agree with a source outside the code - an analytical limit, an independent method, published data? | `tests/benchmarks/` (chapter 13) |
 
 ## Approaches
 

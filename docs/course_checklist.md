@@ -14,6 +14,7 @@
 - [x] data and I/O bugs: missing fields, malformed values, placeholders, path, encoding, line endings (labs 03, 04)
 - [x] OOP and state bugs: mutable defaults, class vs instance attributes, missing invariants, equality/hash (lab 06)
 - [x] environment, import and configuration bugs: undeclared dependency, cwd-relative path, environment variables, config key drift (labs 07, 08, 13)
+- [x] engineering correctness: unit inconsistency, equation errors, ranges of validity, extrapolation, unvalidated properties; verification, validation and benchmarking with sourced reference values (lab 14, chapter 13, `tests/benchmarks/`)
 - [x] performance: quadratic algorithms, repeated work, string building; memory per record with `tracemalloc` (labs 09-10)
 - [x] exceptions and assertions: hierarchy, context, chaining, when to assert (lab 03, `docs/testing_guide.md`)
 - [x] error-message interpretation and traceback reading (lab 01, `docs/debugging_workflow.md`)

@@ -1,6 +1,6 @@
 # The course: chapters
 
-Thirteen short chapters that explain the concepts each lab needs, from zero. Read the chapter, then do
+Fourteen short chapters that explain the concepts each lab needs, from zero. Read the chapter, then do
 the lab; the handouts assume the chapter has been read. Every chapter ends with the habits it starts,
 collected in [`../habits.md`](../habits.md). Runnable examples for the chapters are in
 [`../../examples/`](../../examples).
@@ -20,3 +20,4 @@ collected in [`../habits.md`](../habits.md). Runnable examples for the chapters 
 | [10](10_tools_and_workflow.md) | Tools and workflow: git, linters, types, the debugger and CI | 11 |
 | [11](11_environment.md) | Environments and configuration | 13 |
 | [12](12_working_like_a_professional.md) | Working like a professional: bug reports, postmortems and the capstone | 12 |
+| [13](13_engineering_correctness.md) | Engineering correctness: units, equations, ranges - verification and validation | 14 |

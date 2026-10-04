@@ -11,6 +11,7 @@ functions, loops, lists, dicts and simple classes. Each week: a 45-minute sessio
 | 3 | Exceptions and assertions: try/except/else/finally, custom exceptions, chaining, when to assert | 03 Exception design | exception strategy note |
 | 4 | Data validation: input contracts, dirty files, repair vs reject | 04 Dirty data | symptom -> cause table |
 | 5 | Logic bugs in engineering calculations: boundaries, units, floats, off-by-one | 05 Logic bugs | known-answer table + a regression test |
+| 5b | Engineering correctness: units, equations, ranges; verification, validation and benchmarking (a second session in week 5, or week 6 with lab 06 moved to week 7 in a 13-week course) | 14 Engineering correctness | V&V record |
 | 6 | Class design: mutable defaults, instance vs class state, invariants, equality | 06 Class design | invariants list |
 | 7 | Integration: contracts between modules, integration tests, configuration | 07 Integration failure | contract paragraph |
 | 8 | Logging and observability: levels, context, diagnosing by logs | 08 Logging | diagnostic playbook |
@@ -21,7 +22,7 @@ functions, loops, lists, dicts and simple classes. Each week: a 45-minute sessio
 
 ## Grading (suggested)
 
-Labs 01-11 and 13: 35 %. Mid-course practical (a fresh buggy module, 90 minutes, labs 01-07 skills): 20 %.
+Labs 01-11, 13 and 14: 35 %. Mid-course practical (a fresh buggy module, 90 minutes, labs 01-07 skills): 20 %.
 Performance report (labs 09-10): 15 %. Capstone: 25 %. Professional practice across the course (commit
 quality, PR descriptions, CI hygiene): 5 %. Rubrics in `docs/rubrics.md`.
 

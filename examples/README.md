@@ -14,3 +14,4 @@ runs them all in CI so they cannot rot.
 | `ch06_mutable_default.py` | the shared default list and class attribute, proved with `is` |
 | `ch08_logging.py` | logging levels; a silent default made visible |
 | `ch09_profile.py` | a quadratic loop, its linear fix, the scaling test |
+| `ch13_units.py` | a unit slip, a missing factor and a correlation out of range, each against its analytical benchmark |

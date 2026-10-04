@@ -104,3 +104,13 @@ def test_capstone_negative_drift_alerts():
 
     recs = [{"timestamp": datetime(2026, 3, 2), "sensor_id": "T", "reading": 60.0, "unit": "degC"}] * 3
     assert alerting.drift_alerts({"T": recs}, {"T": 65.0}, max_drift=2.0)[0]["value"] == pytest.approx(-5.0)
+
+
+def test_lab14_units_equations_and_ranges():
+    from engdebug import engineering as eng
+
+    assert eng.ideal_gas_volume_m3(1.0, 273.15, 101325.0) == pytest.approx(0.022414, rel=1e-4)  # kelvin, not Celsius
+    assert eng.pump_power_w(1.0, 10.0, 1000.0, 1.0) == pytest.approx(98066.5)  # g present, efficiency a fraction
+    assert eng.friction_factor(1000.0) == pytest.approx(0.064)  # laminar: 64/Re, never Blasius
+    with pytest.raises(CalculationError):
+        eng.interpolate_table(11.0, [0.0, 10.0], [0.0, 1.0])  # no silent extrapolation

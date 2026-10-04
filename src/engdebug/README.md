@@ -15,6 +15,7 @@ is short and has a docstring saying what it is for.
 | 8 | `logsetup.py` | configure once; a plain and a JSON formatter |
 | 9 | `pipeline.py` | the stages in order, a count logged after each, config validated on load |
 | 10 | `cli.py` | arguments in, exit code out; the only place that prints |
+| 11 | `engineering.py` | units in every name, SI inside, `convert` with sourced factors, a range check with a message per correlation; its V&V record is `tests/benchmarks/` |
 
 Things a beginner may not have met, in the order they appear:
 

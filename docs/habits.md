@@ -34,6 +34,17 @@ syllabus.
 | Keep every file that ever broke the parser, with a test | your test data is the history of what the world sent you | 4 / 04 |
 | Configuration defined once, validated on load, read once | config drift and `KeyError`s on other machines | 7, 11 / 07, 13 |
 
+## Engineering correctness
+
+| habit | why | chapter / lab |
+|---|---|---|
+| Units in every name; SI inside; one conversion function with sourced factors | a parameter called `temperature` invites any unit | 13 / 14 |
+| Units written next to every number in a hand calculation, before coding | dimensional homogeneity catches most equation errors on paper | 13 / 14 |
+| An analytical benchmark for every equation (a limit, an identity, a scaling law) | a known answer that needs no experiment and that a wrong factor cannot reproduce | 13 / 14 |
+| Every correlation carries its range in the code; refuse, do not invent | outside its range a correlation is meaningless, and the code cannot tell | 13 / 14 |
+| A benchmark names its source outside the code | otherwise it is a regression test, which catches change, not error | 13 / 14 |
+| Verification (right equations, solved right) before validation (right equations for reality), and both recorded | the V&V record is what a reviewer asks for first | 13 / 14 |
+
 ## Testing
 
 | habit | why | chapter / lab |

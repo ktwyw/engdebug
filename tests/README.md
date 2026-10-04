@@ -16,6 +16,7 @@ python -m pytest --cov=engdebug --cov-report=term-missing   # which lines no tes
 | `e2e/` | does the program work as a user runs it? | the CLI in a subprocess; the chapter examples |
 | `regression/` | does every bug fixed in a lab stay fixed? | one test per lab, named after it |
 | `performance/` | is it still fast enough on a month of data? | `datasets/clean/large_day.csv`, marked `slow` |
+| `benchmarks/` | do the engineering numbers agree with sources outside the code? | analytical limits, identities, an independent method, IAPWS and NIST values - each named in the test |
 
 `conftest.py` holds the shared fixtures: `data_dir` (the datasets folder), `records` (twelve clean
 records for two sensors), `csv_file(rows, ...)` (writes a temporary CSV with optional BOM and CRLF).
