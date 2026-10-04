@@ -1,5 +1,8 @@
 # Lab 03 · Exception design: stop swallowing errors
 
+**Read first.** [Chapter 3 · Exceptions, assertions and error messages](../../docs/course/03_exceptions.md) explains every concept this lab uses. **Habits practised:** fail loudly; catch what you name; context in every message; define the package's exceptions on day one (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Last Tuesday's report showed a mean temperature of 0.0 for pump 1. Nobody noticed for a
 week. The loader had caught every error, printed "could not load file" to a terminal nobody was watching,
 and returned an empty list; `mean_reading` then caught the `ZeroDivisionError` and returned 0.0. Two
@@ -26,6 +29,31 @@ python -m pytest labs/lab03_exceptions -q
 ```
 
 A file that does not exist has a mean reading of 0.0. That is the bug.
+
+## What the buggy code does, line by line
+
+```python
+    except:            # catches EVERYTHING, including Ctrl-C
+        pass           # ...and does nothing: the row is silently dropped
+```
+
+and, around the whole file:
+
+```python
+    except:
+        print("could not load file")   # to a terminal nobody is watching
+    return readings                    # an empty list, indistinguishable from an empty file
+```
+
+and in `mean_reading`:
+
+```python
+    except:
+        return 0.0     # ZeroDivisionError on an empty list becomes "the mean is 0.0"
+```
+
+Three catches, each turning a failure into something that looks like success. Chapter 3 calls this the
+fourth option - the one that is never right.
 
 ## Diagnose
 

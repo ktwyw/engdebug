@@ -1,5 +1,8 @@
 # Lab 05 · Logic bugs: the code runs, the numbers are wrong
 
+**Read first.** [Chapter 5 · Logic and numbers](../../docs/course/05_logic_and_numbers.md) explains every concept this lab uses. **Habits practised:** known answers first; units in names, constants with names; isclose, never ==, on floats; test the edges; docstrings state the contract (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Nothing in `analysis.py` crashes. Every function returns a number, the dashboard shows it, and
 for two months nobody has questioned it. A new engineer plotted the moving average against the raw data
 and noticed the first few points were always too low. Then she kept looking.

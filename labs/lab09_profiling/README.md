@@ -1,5 +1,8 @@
 # Lab 09 · Profiling: measure before you optimise
 
+**Read first.** [Chapter 9 · Performance](../../docs/course/09_performance.md) explains every concept this lab uses. **Habits practised:** time it before you touch it, at two sizes; profile, then fix the top entry (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** `slow.py` finds anomalous readings in a month of data. It is correct. It takes minutes. The
 team has concluded that "Python is slow" and is talking about a rewrite. Before anyone rewrites anything,
 you will measure where the time goes.
@@ -54,6 +57,24 @@ python -c "import pstats; pstats.Stats('labs/lab09_profiling/month.prof').sort_s
 
 Read both listings. Three questions for each top entry: how many times was it called? is that number
 reasonable? what calls it?
+
+## Reading the listing
+
+```
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000   20.412   20.412 slow.py:70(run)
+        6    0.052    0.009   19.610    3.268 slow.py:38(anomaly_scores)
+    51840   18.903    0.000   18.903    0.000 slow.py:41(<listcomp>)
+```
+
+- `ncalls`: how many times the function ran. 51 840 calls of a list comprehension - once per reading.
+- `tottime`: time in the function's own lines, excluding calls it made. 18.9 s of 20.4 s are *inside* that
+  comprehension.
+- `cumtime`: time including everything it called. `run` is 20.4 s because everything is under it.
+- `percall`: `tottime`/`ncalls` and `cumtime`/`ncalls`.
+
+Sort by `cumulative` to find the branch of the call tree that is expensive; by `tottime` to find the leaf
+that does the work. Here both point at line 41.
 
 ## Diagnose
 

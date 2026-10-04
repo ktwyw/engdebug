@@ -1,5 +1,8 @@
 # Lab 06 · Class design: shared state and missing invariants
 
+**Read first.** [Chapter 6 · Classes and state](../../docs/course/06_classes_and_state.md) explains every concept this lab uses. **Habits practised:** None as the default, create inside; state in __init__, constants in the class body; invariants in the docstring and in tests; decide the empty case (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Two symptoms from the same module. Pump 2's dashboard shows pump 1's readings. A pump that
 had tripped to `fault` was set to `running` by a script, skipping the inspection, and ran for a shift
 before anyone noticed. Both are design bugs in `equipment.py`: state is shared where it should be private,

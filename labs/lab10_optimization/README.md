@@ -1,5 +1,8 @@
 # Lab 10 · Optimisation with proof
 
+**Read first.** [Chapter 9 · Performance](../../docs/course/09_performance.md) explains every concept this lab uses. **Habits practised:** the old version is the oracle; prefer the right data structure to the clever trick; write the performance test (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Lab 09 found where the minutes go. Now make the month run in under two seconds without
 changing a single character of the output. "Without changing the output" is the hard part: an
 optimisation that silently changes a result is a bug with a speed-up attached.

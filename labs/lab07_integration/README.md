@@ -1,5 +1,8 @@
 # Lab 07 · Integration failure: two modules that each pass their own tests
 
+**Read first.** [Chapter 7 · Modules, contracts and integration](../../docs/course/07_modules_and_contracts.md) explains every concept this lab uses. **Habits practised:** docstrings state what is returned and raised; type hints on every signature; one integration test per boundary; configuration defined once, validated on load (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Last sprint the ingestion stage was rewritten to return columns (a dict of lists) because
 "pandas will want it that way". The analysis stage still expects rows (a list of dicts). Each module's
 unit tests pass. The pipeline crashes on the first run, and when the first crash is fixed, a second one

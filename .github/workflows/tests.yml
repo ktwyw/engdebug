@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
-      - run: ruff check src tests tools docs solutions labs
+      - run: ruff check src tests tools docs solutions labs examples
       - run: ruff format --check src tests tools
       - run: mypy
 

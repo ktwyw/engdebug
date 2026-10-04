@@ -33,6 +33,11 @@ first attempt), test quality (rubric C), and a self-rated confidence survey (1-5
 bug in code I did not write". The capstone's regression rate (bugs reintroduced during the fix) is the
 course's own metric.
 
+## Chapters
+
+Each week's 45-minute session follows the chapter of the same number in `docs/course/`; students who miss
+the session read the chapter. The chapters are written to stand alone.
+
 ## Self-study
 
 The labs stand alone: a learner working through them in order needs only Python 3.10+, `pytest`, and

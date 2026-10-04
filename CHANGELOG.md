@@ -14,6 +14,8 @@ First public release.
   solution passes.
 - **Capstone**: release candidate 0.2.0-rc1 with a data-handling bug, a logic bug and a 100x performance
   regression; acceptance tests; a worked postmortem.
+- **Course chapters** (`docs/course/`, 13 chapters from zero with runnable examples in `examples/`) and a
+  catalogue of programming habits (`docs/habits.md`) tied to the chapters and labs.
 - **Docs**: the debugging workflow, an error catalog, a testing guide, a performance playbook, a postmortem
   template, a 12-week syllabus, learning outcomes and rubrics, a course checklist.
 - **Industrial workflow**: CI (tests across 3 OS x 4 Python versions, ruff, mypy, lab checker), issue and

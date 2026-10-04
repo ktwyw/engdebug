@@ -22,6 +22,9 @@
 - [x] unit, integration, regression (one per lab), end-to-end (through the CLI), performance
 - [x] boundary and edge cases in every unit test file; parametrised tests; property-based tests with Hypothesis
 
+- [x] thirteen concept chapters for self-study (`docs/course/`), each from zero, with runnable examples (`examples/`, run in CI)
+- [x] a catalogue of programming habits with the chapter and lab that build each (`docs/habits.md`); every lab names the habits it practises
+
 **Debugging workflow habits**: reproduce, minimise, observe, hypothesise, instrument, fix and verify, prevent - the structure of every handout.
 
 **Efficiency and optimisation**: baseline first (lab 09), `cProfile`/`timeit`/`perf_counter`/`tracemalloc`, correctness-preserving optimisation proven by an equivalence test (lab 10), before/after evidence in `benchmark.md`.

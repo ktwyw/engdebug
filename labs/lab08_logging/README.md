@@ -1,5 +1,8 @@
 # Lab 08 · Logging and observability: the "intermittent" monitor
 
+**Read first.** [Chapter 8 · Logging and observability](../../docs/course/08_logging.md) explains every concept this lab uses. **Habits practised:** logging, never print, in library code; a count per stage at INFO; a WARNING for every skip and default; read the log before the code (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** The daily monitor is supposed to report pressure excursions and temperature drift. Some days
 it reports nothing when the operators know something happened. There is no traceback, no message, no
 clue; the script exits 0. The operators call it intermittent. It is not: it fails deterministically on
@@ -43,6 +46,20 @@ Do not read for the bug yet. Add logging first:
 The DEBUG lines will show the limit for `degC` is `inf`. The WARNING will show which sensors have no
 reference. Now you know both bugs without having read the code: the limits table has lower-case keys
 (`degc`) while the data say `degC`, and S102 is missing from `REFERENCES` - which the bare except hid.
+
+## What the log should look like when you are done
+
+```
+10:42:01 INFO     monitor: loaded 1728 records from datasets/clean/sensor_day2.csv
+10:42:01 WARNING  monitor: no reference value for sensor S102: drift not checked
+10:42:01 INFO     monitor: 6 threshold alerts
+10:42:01 INFO     monitor: 1 drift alerts
+10:42:01 INFO     monitor: 7 alerts in total
+```
+
+Every stage reports a count; every skip is a WARNING naming what was skipped. With `level=DEBUG` there
+is one line per reading showing the unit, the limit and the value - the line that would have found the
+case bug in a second.
 
 ## Fix
 

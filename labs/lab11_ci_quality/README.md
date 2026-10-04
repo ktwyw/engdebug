@@ -1,5 +1,8 @@
 # Lab 11 · Industrial workflow: make the CI green
 
+**Read first.** [Chapter 10 · Tools and workflow](../../docs/course/10_tools_and_workflow.md) explains every concept this lab uses. **Habits practised:** commit small, with a message that says why; linter and type checker before every commit; never silence a tool without a written reason (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** `quality.py` was pushed on Friday afternoon. The CI pipeline has three jobs - lint, type
 check, tests - and all three are red. The author is on holiday. You are the reviewer.
 
@@ -24,6 +27,27 @@ python -m pytest labs/lab11_ci_quality -q
 
 Three tools, three reports. Read all three before fixing anything; some findings are the same bug seen
 from different angles.
+
+## What the three reports look like
+
+```
+$ ruff check --isolated --select E,F,W,I,B --line-length 120 quality.py
+quality.py:2:8: F401 [*] `os` imported but unused
+quality.py:3:8: F401 [*] `math` imported but unused
+quality.py:4:31: F401 [*] `timedelta` imported but unused
+quality.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+quality.py:37:121: E501 Line too long (159 > 120)
+
+$ mypy --strict quality.py
+quality.py:30: error: Incompatible return value type (got "float", expected "int")  [return-value]
+
+$ python -m pytest labs/lab11_ci_quality -q
+FAILED test_lab11.py::test_hours_between_is_whole_hours_and_symmetric - assert 2.75 == 2
+FAILED test_lab11.py::test_report_on_empty_list_does_not_crash - ValueError: min() arg is an empty sequence
+```
+
+Each line is `file:line:column: CODE message`. `[*]` means ruff can fix it for you (`--fix`). The codes
+are searchable: F401 is "unused import", I001 "unsorted imports", E501 "line too long".
 
 ## Diagnose
 

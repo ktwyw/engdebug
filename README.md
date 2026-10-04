@@ -34,6 +34,17 @@ python -m engdebug.cli datasets/corrupted/sensor_day1_corrupted.csv    # see wha
 python -m pytest labs/lab01_tracebacks -q             # your first lab: five failing scripts
 ```
 
+## The course: chapters, labs, habits
+
+Thirteen chapters in [`docs/course/`](docs/course) explain every concept from zero - what a traceback is
+and how to read one, what a test is and how `pytest` runs it, how exceptions travel, why `0.1 + 0.2` is
+not `0.3`, why a default `[]` is shared, what a logger is, how to read a profile, what a virtual
+environment protects you from - each with a runnable example in [`examples/`](examples) and ending with
+the programming habits it starts. The labs practise the chapters on broken code, and
+[`docs/habits.md`](docs/habits.md) collects the habits with the chapter and lab that build each. The
+intended path for self-study is chapter → lab → notes, in order; [`docs/course/00_getting_started.md`](docs/course/00_getting_started.md)
+is the first step and takes fifteen minutes.
+
 ## The labs
 
 Every lab has the same shape, which is the debugging workflow itself: **context → reproduce → observe →
@@ -99,21 +110,26 @@ report the missing solutions; disable it or keep a private copy).
 
 ## For self-learners
 
-Work the labs in order; each takes about an hour. Read the handout, run the reproducing command, write
-down what you see *before* changing anything, and only open `solutions/` after your tests are green or
-you have been stuck for an honest hour. Everything runs with Python 3.10+ and `pytest`; nothing needs an
-account or a GPU.
+Start with [chapter 0](docs/course/00_getting_started.md). Then, for each lab: read its chapter (30-45
+minutes), do the lab (60-90 minutes), write a page of notes in your own words. Every chapter is written
+for someone who has never seen the concept; every lab handout links to its chapter and lists the habits
+it practises. Open `solutions/` only after your tests are green or after an honest hour with all three
+hints used. Everything runs with Python 3.10+ and `pytest`; nothing needs an account or a GPU. The whole
+course is about forty hours.
 
 ## Repository layout
 
 ```
-src/engdebug/        the reference pipeline (standard library only)
-tests/               unit, integration, e2e, regression, performance
-labs/lab01..lab12/   handout, buggy/ code, failing tests
-solutions/           worked solutions with notes
-capstone/            release candidate with three incidents, acceptance tests
-datasets/            clean/ and corrupted/ sensor files, a calibration table, a month of data
-docs/                workflow, error catalog, testing guide, performance playbook, postmortem template, syllabus, rubrics
+docs/course/         13 chapters: the concepts, from zero, one per lab
+docs/habits.md       the programming habits the course builds, with the chapter and lab for each
+examples/            one runnable script per chapter
+labs/lab01..lab13/   handout (links to its chapter), buggy/ code, failing tests, hint ladder
+solutions/           worked solutions with notes; the capstone's fixed release and postmortem
+capstone/            release candidate 0.2.0-rc1 with three incidents, acceptance tests
+src/engdebug/        the reference pipeline (standard library only) with a reading guide
+tests/               unit, integration, e2e, regression (one per lab), performance
+datasets/            clean/ and corrupted/ sensor files, documented fault by fault
+docs/                workflow, error catalog, testing guide, performance playbook, debugger walkthrough, postmortem template, syllabus, rubrics, checklist
 tools/               make_datasets.py, check_labs.py
 .github/             CI workflow, issue and pull-request templates
 ```

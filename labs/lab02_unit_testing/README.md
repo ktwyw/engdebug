@@ -1,5 +1,8 @@
 # Lab 02 · Unit test rescue
 
+**Read first.** [Chapter 2 · Testing from zero](../../docs/course/02_testing_from_zero.md) explains every concept this lab uses. **Habits practised:** three tests per function: normal, boundary, error; known-answer inputs; small, pure functions; tests named for the behaviour (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** `kpi.py` computes three indicators that go on the plant's weekly dashboard. The operators say
 the efficiency "looks wrong" and nobody has written a single test. You will write the tests first, watch
 them fail, then fix the code.
@@ -35,6 +38,37 @@ express what each function should do:
 
 Run `python -m pytest labs/lab02_unit_testing -q` and count the failures. Then open `test_lab02.py` and
 compare with your tests: did you think of the same boundaries?
+
+## Worked example: the first test
+
+Create `labs/lab02_unit_testing/test_my_kpi.py`:
+
+```python
+import importlib.util, os
+from pathlib import Path
+import pytest
+
+SRC = Path(os.environ.get("ENGDEBUG_LAB_SRC", Path(__file__).parent / "buggy"))
+spec = importlib.util.spec_from_file_location("kpi", SRC / "kpi.py")
+kpi = importlib.util.module_from_spec(spec); spec.loader.exec_module(kpi)   # import the buggy module by path
+
+def test_efficiency_of_80_out_of_100_is_0_8():
+    assert kpi.efficiency(80.0, 100.0) == pytest.approx(0.8)
+```
+
+(The six-line import dance at the top loads a file that is not an installed package; the provided test
+files do the same. In your own projects, `from mypackage import kpi` replaces it.)
+
+Run `python -m pytest labs/lab02_unit_testing/test_my_kpi.py -q`:
+
+```
+>       assert kpi.efficiency(80.0, 100.0) == pytest.approx(0.8)
+E       assert 1.25 == 0.8 ± 8.0e-07
+```
+
+The failure shows both sides: the code returned 1.25. You now have a specification (0.8), evidence (1.25)
+and a hypothesis (the division is upside down) before touching `kpi.py`. Add the boundary and error
+tests the same way, then fix.
 
 ## Diagnose and fix
 

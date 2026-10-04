@@ -1,5 +1,8 @@
 # Lab 04 · Dirty data: the file that "looks the same"
 
+**Read first.** [Chapter 4 · Data: files, encodings and validation](../../docs/course/04_data.md) explains every concept this lab uses. **Habits practised:** encoding and newline always explicit; one function per conversion; write the contract first; validate at the boundary; report every skipped row; keep the bad file (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** The vendor's January file parsed perfectly. The March file -
 `datasets/corrupted/sensor_day1_corrupted.csv` - crashes the parser, and when you force it through, the
 numbers are wrong. Open it in a plain text editor (not a spreadsheet, which hides most of this) and look

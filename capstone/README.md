@@ -33,6 +33,24 @@ The rubric in `docs/rubrics.md`: debugging process (did you reproduce, isolate, 
 root-cause analysis (the *cause*, with a causal chain from the change to the symptom), testing quality,
 diagnostics, efficiency evidence, and professional practice (commits, PR description, postmortem).
 
+## The first diagnostic: what changed?
+
+The last good release is the reference package in `src/engdebug/`; the candidate is
+`capstone/release/engdebug_release/` (the same code with the package renamed). Before reading any
+function, read the difference:
+
+```bash
+for f in ingestion alerting validation calculations pipeline; do
+  diff <(sed s/engdebug_release/engdebug/g capstone/release/engdebug_release/$f.py) src/engdebug/$f.py && echo "$f: identical"
+done
+```
+
+In a real repository this is `git diff v0.1.0..v0.2.0-rc1 -- src/`. Three incidents, three diffs; the
+diff does not tell you which incident each causes, or why - that is the work - but it narrows a week of
+reading to three places. Resist the temptation to copy the old code back blindly: you must still
+explain each causal chain in the postmortem, and in a real incident the old code is not always right
+either.
+
 ## Hints, if stuck after an honest hour
 
 - INC-101: lab 04. Look at the first three bytes of the file and at how it is opened.

@@ -1,5 +1,8 @@
 # Lab 01 · Traceback triage
 
+**Read first.** [Chapter 1 · How Python fails](../../docs/course/01_how_python_fails.md) explains every concept this lab uses. **Habits practised:** run early, run often; one name, spelled one way; convert at the boundary; the linter before the interpreter (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** Five short scripts from the plant's analysis folder, each written in a hurry, each failing.
 Your job is not to rewrite them; it is to read the traceback, find the one line that is wrong, fix it, and
 say what *class* of error it was.
@@ -33,6 +36,31 @@ For each script, write down three things before changing anything:
 Script 3 deserves a second look: the comparison `71.2 > "120"` raises in Python 3, but in Python 2 it
 silently returned a nonsense answer. A config file always hands you *strings*; the bug is a missing
 conversion, not a missing comparison.
+
+## Worked example: script 1, step by step
+
+Run it:
+
+```
+$ python labs/lab01_tracebacks/buggy/script1_syntax.py
+  File "labs/lab01_tracebacks/buggy/script1_syntax.py", line 4
+    def mean(values)
+                    ^
+SyntaxError: expected ':'
+```
+
+1. *Last line first.* `SyntaxError: expected ':'` - the file is not valid Python; nothing has run yet
+   (chapter 1: errors before execution). The message even says what is missing.
+2. *Where.* Line 4, and the caret sits at the end of `def mean(values)`.
+3. *Hypothesis.* "A function definition needs a colon after the parameter list; it is missing."
+4. *Fix.* Add the colon. Rerun: `mean temperature: 71.78 degC`. Run the check:
+   `python -m pytest labs/lab01_tracebacks -q -k script1` - one dot.
+5. *Prevent.* An editor with syntax highlighting shows the next line indented under a `def` that has no
+   colon as an error before you save; and running the file after writing five lines would have found it
+   in seconds.
+
+Now do scripts 2-5 the same way, writing the five lines of notes for each *before* editing. Script 3 is
+the only one where the message does not say what to do; chapter 1's entry on `TypeError` does.
 
 ## Diagnose and fix
 

@@ -47,6 +47,7 @@ def load_readings(path, *, skip_bad_rows: bool = False, bad_rows: list | None = 
     if not path.exists():
         raise IngestionError(path, "file not found")
     records = []
+    # utf-8-sig strips a byte-order mark if present; newline="" lets the csv module handle \r\n itself
     with open(path, encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         if reader.fieldnames is None:
@@ -56,6 +57,7 @@ def load_readings(path, *, skip_bad_rows: bool = False, bad_rows: list | None = 
         if missing:
             raise IngestionError(path, f"missing columns {missing}; found {reader.fieldnames}")
         for row_number, raw in enumerate(reader, start=2):  # row 1 is the header
+            # normalise the header names and replace None (a short row) by ""; a row of only blanks is skipped
             row = {k.strip().lower(): (v or "") for k, v in raw.items() if k is not None}
             if not any(v.strip() for v in row.values()):
                 continue  # blank line
@@ -69,6 +71,7 @@ def load_readings(path, *, skip_bad_rows: bool = False, bad_rows: list | None = 
                     }
                 )
             except (ValueError, KeyError) as exc:
+                # the two decisions of chapter 3: translate (raise with context) or recover (skip AND record)
                 if not skip_bad_rows:
                     raise IngestionError(path, str(exc), row=row_number) from exc
                 if bad_rows is not None:

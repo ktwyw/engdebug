@@ -1,5 +1,8 @@
 # Lab 13 · Environment, imports and configuration: "it works on my machine"
 
+**Read first.** [Chapter 11 · Environments and configuration](../../docs/course/11_environment.md) explains every concept this lab uses. **Habits practised:** one virtual environment per project; every import declared; paths from __file__ or from arguments; configuration read once, converted once, defaulted once (see [`docs/habits.md`](../../docs/habits.md)).
+
+
 **Context.** `calibrate.py` applies the pressure-sensor calibration table. On the author's laptop it is
 fine. On the CI runner it fails with `ModuleNotFoundError: No module named 'yaml'`. On the operator's
 machine, started from a different folder, it fails with `FileNotFoundError:

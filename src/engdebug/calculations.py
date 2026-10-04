@@ -41,12 +41,12 @@ def moving_average(values: Sequence[float], window: int) -> list[float]:
     if window < 1:
         raise ValueError(f"window must be >= 1, got {window}")
     out = []
-    total = 0.0
+    total = 0.0  # a running sum: add the new value, drop the one that left the window - O(1) per step
     for i, v in enumerate(values):
         total += v
         if i >= window:
             total -= values[i - window]
-        out.append(total / min(i + 1, window))
+        out.append(total / min(i + 1, window))  # divide by the number of values actually in the window
     return out
 
 
@@ -74,11 +74,11 @@ def anomaly_scores(values: Sequence[float], window: int = 20) -> list[float]:
     (0.0 while fewer than two previous values exist or their std is zero)."""
     out = []
     for i in range(len(values)):
-        prev = values[max(0, i - window) : i]
+        prev = values[max(0, i - window) : i]  # a slice, never a scan of the whole series (lab 09)
         if len(prev) < 2:
-            out.append(0.0)
+            out.append(0.0)  # not enough history to judge
             continue
-        m, s = mean_and_std(prev)
+        m, s = mean_and_std(prev)  # recomputed per window: O(n * w), fine for w = 20; lab 10 shows the O(1) update
         out.append(0.0 if s == 0 else (values[i] - m) / s)
     return out
 

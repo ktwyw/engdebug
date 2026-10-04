@@ -1,0 +1,1 @@
+The lab 12 solution is the capstone solution: see `../capstone/` (fixed release and `POSTMORTEM.md`). This directory holds a copy of the fixed package so that `tools/check_labs.py` can verify it like any other lab.
